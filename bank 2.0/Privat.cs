@@ -1,17 +1,20 @@
-﻿namespace bank_2._0
+﻿using System;
+using System.Security.Principal;
+using System.Threading;
+
+namespace bank_2._0
 {
     internal class Privat
     {
         string inlogg;
         string pass;
 
-        Random random = new Random();
-        public int number1;
-        public int number2;
-
+        Random randomAc = new Random();
+        public int number3;
 
         public List<string> userList = new List<string>();
         public List<string> passList = new List<string>();
+        public List<int> bankList = new List<int>();
 
         public string Pass { get => pass; set => pass = value; }
         public string Inlogg { get => inlogg; set => inlogg = value; }
@@ -31,6 +34,7 @@
 
                 var userfound = userList.Find(i => i.Equals(Inlogg));
                 var userfound1 = passList.Find(i => i.Equals(Pass));
+                
 
                 if (userfound == Inlogg && userfound1 == Pass)
                 {
@@ -67,19 +71,24 @@
         {
             Console.Clear();
             Console.WriteLine("Välkommen till din användarmenyn");
-            Console.WriteLine("1. Se mina bankkonton");
+            Console.WriteLine("1. Skapa nytt bankkonto");
             Console.WriteLine("2. Valuta ");
-            Console.WriteLine("3. Logga ut");
+            Console.WriteLine("3. Se mina bankkonton");
+            Console.WriteLine("4. Logga ut");
             int adminInput = checkNr();
             switch (adminInput)
             {
                 case 1:
-                    banksaldo();
+                    addAccount();
                     break;
                 case 2:
                     valuta();
                     break;
                 case 3:
+                    banksaldo();
+                    break;
+                case 4:
+                    valuta();
                     Console.Clear();
                     Console.WriteLine("Tack för idag");
                     break;
@@ -90,16 +99,22 @@
         }
         public void banksaldo()
         {
-            number1 = random.Next(1111111, 9999999);
-            number2 = random.Next(0, 1000000);
+            Random random = new Random();
 
+            Console.Clear();
             Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Kontonummer : " + number1);
-            Console.WriteLine("Banksaldo : " + number2 + " kr");
-            Console.WriteLine("------------------------------------------------");
-
-            Thread.Sleep(4000);
+            Console.WriteLine("Lista över dina kontonummer");
+            Console.WriteLine("-----------------------------------------------");
+            foreach (var item1 in bankList)
+            {
+                
+                Console.WriteLine("Kontonummer:"+item1 +",  Banksaldo:" + (random.Next(0, 1000000)) +"kr");
+                Console.WriteLine("-----------------------------------------------");
+            }
+           
+            Console.ReadKey();
             usermeny();
+           
         }
 
         public void valuta()
@@ -126,6 +141,30 @@
             }
 
             return nr;
+        }
+        public void addAccount()
+        {
+          
+            Console.Clear();
+            number3 = randomAc.Next(1111111, 9999999);
+            try
+            {
+                Console.WriteLine("Vill du skapa ett nytt bankkonto tryck enter.\nAnnars vänta kvar så skickas du automatsikt tillbaka till huvudmenyn");
+                Console.WriteLine("--------------------------------------------");
+                Console.ReadKey();
+                Console.WriteLine("Ditt nya kontonummer är : " + number3);
+                bankList.Add(number3);
+                
+                Console.ReadKey();
+                usermeny();
+
+            }
+            catch
+            {
+                Console.WriteLine("Fel typ av inmatning använd siffror\nTryck enter");
+                Console.ReadKey();
+            }
+            addAccount();
         }
     }
 }
