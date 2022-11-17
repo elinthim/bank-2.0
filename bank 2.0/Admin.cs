@@ -11,7 +11,7 @@
         {
             bool gameOver = false;
             int num = 0;
-            while (gameOver == false) // Hallå hålla 
+            while (gameOver == false) 
             {
 
                 Console.Write("Användarnamn Admin : ");
