@@ -1,0 +1,11 @@
+First class Bank has an internal partial class called: Mybank.
+In the Bank class there are 2 methods called, Start and checkNR.
+Metod Start contains the main menu.
+Metod checkNR checks that the correct type of input is made.
+The second class is called Admin and has an internal partial class called: Mybank.
+In the Admin class there are 4 methods called, adminInlogg, admin, addUser, checkUser.
+Method adminInlogg contains login function for admin user.
+Method admin contains a menu for the admin user.
+Method addUser contains a function where you can create a user.
+Method checkUser a function where you can see all created users.
+
